@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProductController extends AbstractController
 {
@@ -12,8 +13,15 @@ class ProductController extends AbstractController
      */
     public function index()
     {
-        return $this->render('product/index.html.twig', [
-            'controller_name' => 'ProductController',
-        ]);
+        return $this->render('product/index.html.twig');
+    }
+
+    /**
+     * @Route("/auth", name="auth")
+     * @IsGranted("ROLE_USER")
+     */
+    public function auth()
+    {
+        return $this->render('product/auth.html.twig');
     }
 }
