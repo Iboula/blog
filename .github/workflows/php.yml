@@ -27,7 +27,7 @@ jobs:
       run: |
       mkdir -p database
       touch database/database.sqlite
-      php bin/console d:m:m
+      php bin/console doctrine:migration:migrate
 
     - name: PHPUnit for Symfony
       uses: chindit/actions-phpunit-symfony@1.0.0
