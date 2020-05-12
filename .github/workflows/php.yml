@@ -20,5 +20,11 @@ jobs:
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
+    - name: Create DB and schemas
+    run: |
+      mkdir -p database
+      touch database/database.sqlite
+      php bin/console d:m:m
+
     - name: PHPUnit for Symfony
       uses: chindit/actions-phpunit-symfony@1.0.0
