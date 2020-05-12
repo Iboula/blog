@@ -17,11 +17,14 @@ jobs:
     - name: Validate composer.json and composer.lock
       run: composer validate --no-check-publish
 
+    - nom: Copy ENV Symfony Configuration for CI 
+      run: php -r "file_exists ('.env') || copy ('.env.ci', '.env');" 
+
     - name: Install dependencies
       run: composer install --prefer-dist --no-progress --no-suggest
 
     - name: Create DB and schemas
-    run: |
+      run: |
       mkdir -p database
       touch database/database.sqlite
       php bin/console d:m:m
