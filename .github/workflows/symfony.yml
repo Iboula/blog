@@ -55,6 +55,7 @@ jobs:
           composer require symfony/orm-pack
           php bin/console doctrine:database:create
           php bin/console doctrine:migrations:migrate -n || echo "No migrations found or migration failed"
+          php bin/console doctrine:fixtures:load -n
         env:
           DATABASE_URL: mysql://root:@127.0.0.1:${{ job.services.mysql.ports['3306'] }}/blog
 
